@@ -1,146 +1,182 @@
+import java.util.*;
+class Node{
+    int data;
+    Node next;
+    Node(int x)
+    {
+        data = x;
+        next = null;
+    }
+}
 
-// Source code is decompiled from a .class file using FernFlower decompiler.
-import java.util.Scanner;
-
-public class Main {
-   Node head = null;
-   Node tail = null;
-
-   public Main1() {
-   }
-
-   public Node insertEnd(int var1) {
-      Node var2 = new Node(var1);
-      if (this.head == null) {
-         this.head = var2;
-         this.tail = var2;
-         this.tail.next = this.head;
-      } else {
-         this.tail.next = var2;
-         var2.next = this.head;
-         this.tail = var2;
-      }
-
-      return this.head;
-   }
-
-   public void display(Node var1) {
-      if (var1 == null) {
-         System.out.println("There are no elements in the Linked List");
-      } else {
-         System.out.print(var1.data + " -> ");
-
-         for(Node var2 = var1.next; var2 != var1; var2 = var2.next) {
-            System.out.print(var2.data + " -> ");
-         }
-
-         System.out.println("null");
-      }
-
-   }
-
-   public Node insertBegin(int var1) {
-      Node var2 = new Node(var1);
-      if (this.head == null) {
-         this.head = var2;
-         this.tail = var2;
-      } else {
-         Node var3 = this.head;
-         var2.next = var3;
-         this.tail.next = var2;
-         this.head = var2;
-      }
-
-      return this.head;
-   }
-
-   public Node insertSpecificPos(int var1, int var2) {
-      Node var3 = new Node(var1);
-      int var4 = 2;
-      if (var2 == 1 && this.head == null) {
-         this.head = var3;
-         this.tail = var3;
-      } else if (var2 == 1) {
-         var3.next = this.head;
-         this.tail.next = var3;
-         this.head = var3;
-      } else {
-         Node var5;
-         for(var5 = this.head.next; var5 != this.head; var5 = var5.next) {
-            ++var4;
-            if (var4 == var2) {
-               var3.next = var5.next;
-               var5.next = var3;
-               break;
+public class Main1 {
+    Node head = null;
+    Node tail = null;
+    public Node insertEnd(int data)
+        {
+            Node node = new Node(data);
+            if(head==null)
+            {
+                head=node;
+                tail=node;
+                tail.next = head;
             }
-         }
-
-         if (var5 == this.head && var4 == var2) {
-            this.head = var3;
-            this.tail = var3;
-            this.tail.next = this.head;
-         } else if (var4 < var2) {
-            System.out.println("Enter the position within the range");
-         }
-      }
-
-      return this.head;
-   }
-
-   public Node deleteFirst() {
-      if (this.head == null) {
-         System.out.println("No elements to delete");
-      } else {
-         this.tail.next = this.head.next;
-         this.head = this.head.next;
-      }
-
-      return this.head;
-   }
-
-   public Node deleteLast() {
-      if (this.head == null) {
-         System.out.println("No elements to delete");
-      } else if (this.head == this.tail) {
-         this.head = null;
-         this.tail = null;
-      } else if (this.head.next.next == this.head) {
-         this.tail = this.head;
-         this.head.next = null;
-      } else {
-         Node var1;
-         for(var1 = this.head; var1.next.next != this.head; var1 = var1.next) {
-         }
-
-         var1.next = this.head;
-         this.tail = var1;
-      }
-
-      return this.head;
-   }
-
-   public static void main(String[] var0) {
-      Main1 var1 = new Main1();
-      Scanner var2 = new Scanner(System.in);
-      System.out.print("Enter the Number Elements to Insert : ");
-      int var3 = var2.nextInt();
-
-      for(int var4 = 0; var4 < var3; ++var4) {
-         System.out.print("Enter the element to insert : ");
-         int var5 = var2.nextInt();
-         var1.insertEnd(var5);
-      }
-
-      var1.display(var1.head);
-      var1.insertBegin(6789);
-      var1.display(var1.head);
-      var1.insertEnd(789);
-      var1.display(var1.head);
-      var1.insertSpecificPos(1111, 3);
-      var1.display(var1.head);
-      var1.deleteFirst();
-      var1.display(var1.head);
-      var1.deleteLast();
-      var1.display(var1.head);
-   }
+            else
+            {
+                tail.next = node;
+                node.next = head;
+                tail = node;
+            }
+            return head;
+        }
+    public void display(Node head)
+        {
+            if(head==null)
+            {
+                System.out.println("There are no elements in the Linked List");
+            }
+            else
+            {
+                Node temp = head;
+                System.out.print(temp.data+" -> ");
+                temp = temp.next;
+                while(temp!=head)
+                {
+                    System.out.print(temp.data+" -> ");
+                    temp = temp.next;
+                }
+                System.out.println("null");
+            }
+        }
+    public Node insertBegin(int data)
+    {
+        Node temp = new Node(data);
+        if(head==null)
+        {
+            head = temp;
+            tail = temp;
+        }
+        else
+        {
+            Node temp1 = head;
+            temp.next = temp1;
+            tail.next = temp;
+            head = temp;
+        }
+        return head;
+    }
+    public Node insertSpecificPos(int data,int pos)
+    {
+        Node temp = new Node(data);
+        int count = 2;
+        if(pos==1 && head==null)
+        {
+            head = temp;
+            tail = temp;
+        }
+        else if(pos==1)
+        {
+            temp.next = head;
+            tail.next = temp;
+            head = temp;
+        }
+        else
+        {
+            Node temp1 = head.next;
+            while(temp1!=head)
+            {
+                count++;
+                if(count==pos)
+                {
+                    temp.next = temp1.next;
+                    temp1.next=temp;
+                    break;
+                }
+                temp1 = temp1.next;
+            }
+            if(temp1==head && count==pos)
+            {
+                head = temp;
+                tail= temp;
+                tail.next = head;
+            }
+            else if(count<pos)
+            {
+                System.out.println("Enter the position within the range");
+            }
+        }
+        return head;
+    }
+    public Node deleteFirst()
+    {
+        if(head==null)
+        {
+            System.out.println("No elements to delete");
+        }
+        else
+        {
+            tail.next = head.next;
+            head = head.next;
+        }
+        return head;
+    }
+    public Node deleteLast()
+    {
+        if(head==null)
+        {
+            System.out.println("No elements to delete");
+        }
+        else if(head==tail)
+        {
+            head = null;
+            tail = null;
+        }
+        else if(head.next.next==head)
+        {
+            tail = head;
+            head.next = null;
+        }
+        else
+        {
+            Node temp = head;
+            while(temp.next.next!=head)
+            {
+                temp = temp.next;
+            }
+            temp.next = head;
+            tail = temp;
+        }
+        return head;
+    }
+    public Node deleteByPos(int pos)
+    {
+        if(head==null)
+        {
+            System.out.println("There are no elements to delete");
+        }
+        return head;
+    }
+        public static void main(String[] args) {
+            Main1 circle = new Main1();
+            Scanner sc = new Scanner(System.in);
+            System.out.print("Enter the Number Elements to Insert : ");
+            int n = sc.nextInt();
+            for(int i=0;i<n;i++)
+            {
+                System.out.print("Enter the element to insert : ");
+                int num = sc.nextInt();
+                circle.insertEnd(num);
+            }
+            circle.display(circle.head);
+            circle.insertBegin(6789);
+            circle.display(circle.head);
+            circle.insertEnd(789);
+            circle.display(circle.head);
+            circle.insertSpecificPos(1111, 3);
+            circle.display(circle.head);
+            circle.deleteFirst();
+            circle.display(circle.head);
+            circle.deleteLast();
+            circle.display(circle.head);
+    }
 }
