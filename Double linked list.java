@@ -1,4 +1,4 @@
-import java.util.*;
+import java.util.sc;
 
 class Node{
     int data;
