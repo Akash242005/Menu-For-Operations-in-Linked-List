@@ -1,4 +1,4 @@
-import java.util.*;
+import java.util.scanner;
 
 class Node{
     int data;
